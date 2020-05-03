@@ -5538,7 +5538,7 @@ struct _dwg_object_object*
 @item num_cells
 BL,	DXF 90
 @item cells
-Dwg_TABLESTYLE_CellStyle*
+Dwg_TABLESTYLE_cellstyle*
 
 @end vtable
 @end indentedblock
@@ -8228,7 +8228,7 @@ struct _dwg_object_object*
 @item class_version
 BS
 @item name
-T,	DXF 300
+T,	DXF 3
 @item flags
 BS,	DXF 71
 @item flow_direction
@@ -8238,9 +8238,9 @@ BD,	DXF 40
 @item vert_cell_margin
 BD,	DXF 41
 @item is_title_suppressed
-B,	DXF 280
+B
 @item is_header_suppressed
-B,	DXF 281
+B
 @item unknown_rc
 RC,	DXF 70
 @item unknown_bl1
@@ -8249,18 +8249,20 @@ BL
 BL
 @item template
 H
-@item sty
-Dwg_TABLESTYLE_CellStyle
+@item cellstyle
+Dwg_TABLESTYLE_cellstyle
 @item numoverrides
 BL
 @item unknown_bl3
 BL
 @item ovr
-Dwg_TABLESTYLE_CellStyle
-@item num_rowstyles
-BL
-@item rowstyles
-Dwg_TABLESTYLE_rowstyles*
+Dwg_TABLESTYLE_cellstyle
+@item data_rowstyle
+Dwg_TABLESTYLE_rowstyle
+@item title_rowstyle
+Dwg_TABLESTYLE_rowstyle
+@item header_rowstyle
+Dwg_TABLESTYLE_rowstyle
 
 @end vtable
 @end indentedblock
@@ -10727,62 +10729,6 @@ Dwg_CellContentGeometry*
 @end vtable
 @end indentedblock
 
-@strong{Dwg_TABLESTYLE_CellStyle} @anchor{Dwg_TABLESTYLE_CellStyle}
-@vindex Dwg_TABLESTYLE_CellStyle
-
-@indentedblock
-@vtable @code
-
-@item parent
-struct _dwg_object_TABLESTYLE*
-@item id
-BL,	DXF 90
-@item type
-BL,	DXF 91
-@item name
-T,	DXF 300
-@item cellstyle.type
-BL
-@item cellstyle.data_flags
-BS
-@item cellstyle.property_override_flags
-BL
-@item cellstyle.merge_flags
-BL
-@item cellstyle.bg_color
-CMC
-@item cellstyle.content_layout
-BL
-@item cellstyle.content_format
-Dwg_ContentFormat
-@item cellstyle.margin_override_flags
-BS
-@item cellstyle.vert_margin
-BD
-@item cellstyle.horiz_margin
-BD
-@item cellstyle.bottom_margin
-BD
-@item cellstyle.right_margin
-BD
-@item cellstyle.margin_horiz_spacing
-BD
-@item cellstyle.margin_vert_spacing
-BD
-@item cellstyle.num_borders
-BL
-@item cellstyle.borders
-Dwg_GridFormat*
-@item cellstyle.tablerow_parent
-struct _dwg_TableRow*
-@item cellstyle.tabledatacolumn_parent
-struct _dwg_TableDataColumn*
-@item cellstyle
-struct _dwg_CellStyle
-
-@end vtable
-@end indentedblock
-
 @strong{Dwg_TABLESTYLE_border} @anchor{Dwg_TABLESTYLE_border}
 @vindex Dwg_TABLESTYLE_border
 
@@ -10799,8 +10745,26 @@ CMC
 @end vtable
 @end indentedblock
 
-@strong{Dwg_TABLESTYLE_rowstyles} @anchor{Dwg_TABLESTYLE_rowstyles}
-@vindex Dwg_TABLESTYLE_rowstyles
+@strong{Dwg_TABLESTYLE_cellstyle} @anchor{Dwg_TABLESTYLE_cellstyle}
+@vindex Dwg_TABLESTYLE_cellstyle
+
+@indentedblock
+@vtable @code
+
+@item parent
+struct _dwg_object_TABLESTYLE*
+@item id
+BL,	DXF 90
+@item type
+BL,	DXF 91
+@item name
+T,	DXF 300
+
+@end vtable
+@end indentedblock
+
+@strong{Dwg_TABLESTYLE_rowstyle} @anchor{Dwg_TABLESTYLE_rowstyle}
+@vindex Dwg_TABLESTYLE_rowstyle
 
 @indentedblock
 @vtable @code
@@ -10819,10 +10783,18 @@ CMC,	DXF 62
 CMC,	DXF 63
 @item has_bgcolor
 B,	DXF 283
-@item num_borders
-BL
-@item borders
-Dwg_TABLESTYLE_border*
+@item top_border
+Dwg_TABLESTYLE_border
+@item hor_border
+Dwg_TABLESTYLE_border
+@item bot_border
+Dwg_TABLESTYLE_border
+@item left_border
+Dwg_TABLESTYLE_border
+@item vert_border
+Dwg_TABLESTYLE_border
+@item right_border
+Dwg_TABLESTYLE_border
 @item data_type
 BL,	DXF 90
 @item unit_type
